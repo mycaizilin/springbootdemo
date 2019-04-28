@@ -4,7 +4,7 @@
 
 
     <!-- Convert mvn placeholder to a logback managed property -->
-    <property name="log.home" value="./logs"/>
+    <property name="log.home" value="../logs"/>
     <property name="log.level" value="INFO"/>
 
     <!--=============================================================

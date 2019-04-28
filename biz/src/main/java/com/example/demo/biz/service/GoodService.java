@@ -15,7 +15,12 @@ public interface GoodService {
 
     List<GoodVO> listGood(String name);
 
-    List<GoodVO> listGoodByRedis(String name);
+    List<GoodVO> listGoodWithRedis(String name);
+
+    List<GoodVO> listGoodWithMq(String name);
+
+    List<GoodVO> listGoodWithDubbo(String name);
 
     void  insertGood(String name, BigDecimal price);
+
 }

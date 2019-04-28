@@ -1,6 +1,8 @@
 package com.example.demo.common.aop;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -17,15 +19,27 @@ import org.springframework.context.annotation.Configuration;
 public class ControllerAspect {
     private final static org.slf4j.Logger logger = LoggerFactory.getLogger(ControllerAspect.class);
 
-    @Pointcut("execution(* com.example.demo.web.*.*(..))")
+    @Pointcut("execution(* com.example.demo.web.controller.*.*(..))")
     public void executeService() {
-
     }
 
     @Before("executeService()")
-    public void doBeforeAdvice(JoinPoint joinPoint) {
+    public void doBefore(JoinPoint joinPoint) {
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-        logger.info("方法名:" + methodSignature.getMethod().getName() + " 参数列表:" + ArrayToParameterString(methodSignature.getParameterNames(), joinPoint.getArgs()));
+        System.out.println("方法名:" + methodSignature.getMethod().getName() + " 参数列表:" + ArrayToParameterString(methodSignature.getParameterNames(), joinPoint.getArgs()));
+    }
+
+    @Around("executeService()")
+    public Object doAround(ProceedingJoinPoint point) throws Throwable{
+        try {
+            System.out.println("AutoAspectJInterceptor begin around");
+            Object object = point.proceed();
+            System.out.println("AutoAspectJInterceptor end around");
+            return object;
+        }catch (Exception ex){
+            System.out.println("around:"+ex);
+            throw ex;
+        }
     }
 
     private String ArrayToParameterString(String[] parameterNames, Object[] parameterValues) {

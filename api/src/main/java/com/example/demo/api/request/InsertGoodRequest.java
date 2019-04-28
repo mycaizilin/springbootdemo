@@ -1,24 +1,15 @@
-package com.example.demo.api.domain;
+package com.example.demo.api.request;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  * @Author: CaiZiLin
- * @Date: 2019/4/19 16:01
+ * @Date: 2019/4/25 18:09
  */
-public class GoodVO  implements Serializable {
-    private Long id;
-    private String  name;
+public class InsertGoodRequest implements Serializable {
+    private String name;
     private BigDecimal price;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

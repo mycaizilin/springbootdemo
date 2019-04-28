@@ -16,11 +16,20 @@
     <groupId>com.example.demo</groupId>
     <artifactId>springboot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot</name>
-    <description>Demo project for Spring Boot</description>
-
     <properties>
         <java.version>1.8</java.version>
+        <com.example.demo.web.version>0.0.1-SNAPSHOT</com.example.demo.web.version>
+        <com.example.demo.api.version>0.0.1-SNAPSHOT</com.example.demo.api.version>
+        <com.example.demo.biz.version>0.0.1-SNAPSHOT</com.example.demo.biz.version>
+        <com.example.demo.repository.version>0.0.1-SNAPSHOT</com.example.demo.repository.version>
+        <com.example.demo.common.version>0.0.1-SNAPSHOT</com.example.demo.common.version>
+        <rocketmq-spring-boot-starter.version>2.0.1</rocketmq-spring-boot-starter.version>
+        <dubbo-spring-boot-starter.version>2.7.1</dubbo-spring-boot-starter.version>
+        <dubbo.version>2.7.1</dubbo.version>
+        <dubbo-dependencies-zookeeper.version>2.7.1</dubbo-dependencies-zookeeper.version>
+        <spring-boot-starter-aop.version>2.1.4.RELEASE</spring-boot-starter-aop.version>
+        <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+        <mybatis-spring-boot-starter.version>2.0.1</mybatis-spring-boot-starter.version>
     </properties>
 
     <dependencies>
@@ -28,13 +37,85 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.example.demo</groupId>
+                <artifactId>web</artifactId>
+                <version>${com.example.demo.web.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.example.demo</groupId>
+                <artifactId>api</artifactId>
+                <version>${com.example.demo.api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.example.demo</groupId>
+                <artifactId>biz</artifactId>
+                <version>${com.example.demo.biz.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.example.demo</groupId>
+                <artifactId>repository</artifactId>
+                <version>${com.example.demo.repository.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.example.demo</groupId>
+                <artifactId>common</artifactId>
+                <version>${com.example.demo.common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo-spring-boot-starter.version}</version>
+            </dependency>
+            <!-- Dubbo -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+            <!-- Zookeeper dependencies -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-dependencies-zookeeper</artifactId>
+                <version>${dubbo-dependencies-zookeeper.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-log4j12</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-aop</artifactId>
+                <version>${spring-boot-starter-aop.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${javax.servlet-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-spring-boot-starter.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
@@ -44,5 +125,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

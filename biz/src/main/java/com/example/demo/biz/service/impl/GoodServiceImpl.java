@@ -1,9 +1,12 @@
 package com.example.demo.biz.service.impl;
 
+import com.example.demo.api.api.MyFacade;
 import com.example.demo.api.domain.GoodVO;
 import com.example.demo.biz.service.GoodService;
+import com.example.demo.common.producer.MyProducer;
 import com.example.demo.repository.dao.GoodDAO;
 import com.example.demo.repository.entity.GoodDO;
+import org.apache.dubbo.config.annotation.Reference;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -23,8 +26,15 @@ import java.util.List;
 public class GoodServiceImpl implements GoodService {
 
     private final static org.slf4j.Logger logger = LoggerFactory.getLogger(GoodServiceImpl.class);
-    @Autowired
+
+    @Autowired(required = false)
     private RedisTemplate redisTemplate;
+
+    @Autowired
+    private MyProducer myProducer;
+
+    @Reference(check = false)
+    MyFacade myFacade;
 
     @Autowired
     GoodDAO goodDAO;
@@ -36,7 +46,7 @@ public class GoodServiceImpl implements GoodService {
     }
 
     @Override
-    public List<GoodVO> listGoodByRedis(String name) {
+    public List<GoodVO> listGoodWithRedis(String name) {
         List<GoodVO> object = (List<GoodVO>) redisTemplate.opsForValue().get(name);
         if(object==null){
             List<GoodDO> goodDOList= goodDAO.listGood(name);
@@ -44,6 +54,19 @@ public class GoodServiceImpl implements GoodService {
             redisTemplate.opsForValue().set(name,object);
         }
         return object;
+    }
+
+    @Override
+    public List<GoodVO> listGoodWithMq(String name) {
+        myProducer.sendMessage("listGood:"+name);
+        List<GoodDO> goodDOList= goodDAO.listGood(name);
+        List<GoodVO> goodVOList=convertGoodDOToGoodVO(goodDOList);
+        return goodVOList;
+    }
+
+    @Override
+    public List<GoodVO> listGoodWithDubbo(String name) {
+        return   myFacade.getHotGoodList();
     }
 
     @Override

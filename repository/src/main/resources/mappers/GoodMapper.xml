@@ -18,7 +18,7 @@
         </where>
     </select>
 
-    <insert id="insertGood" parameterType="com.example.demo.repository.entity.GoodDO">
+    <insert id="insertGood" parameterType="com.example.demo.repository.entity.GoodDO"  useGeneratedKeys="true" keyProperty="id">
             INSERT into test_good(name,price) VALUES (#{name,jdbcType=VARCHAR},#{price,jdbcType=DECIMAL});
     </insert>
 </mapper>
