@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <configuration scan="true">
-
-
     <!-- Convert mvn placeholder to a logback managed property -->
     <property name="log.home" value="../logs"/>
     <property name="log.level" value="INFO"/>
@@ -10,7 +8,6 @@
     <!--=============================================================
      ===                  Appender definition                     ===
      =============================================================-->
-
     <appender name="ROOT" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${log.home}/root.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -51,6 +48,4 @@
     <logger name="com.example.demo.biz" level="${log.level:-INFO}" additivity="false">
         <appender-ref ref="biz-appender"/>
     </logger>
-
-
 </configuration>

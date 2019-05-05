@@ -27,7 +27,7 @@ public class HomeController {
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public BaseResult Index() {
         logger.info("Hello World订单");
-        return PlainResult.newSuccessResult("Hello World订单") ;
+        return PlainResult.newSuccessResult("Hello World订单");
     }
 
     @RequestMapping(value = "/good/list", method = RequestMethod.GET)
@@ -35,28 +35,28 @@ public class HomeController {
         List<String> list = new ArrayList<>();
         list.add("苹果");
         list.add("香蕉");
-        return ListResult.newSuccessResult(list) ;
+        return ListResult.newSuccessResult(list);
     }
 
     @RequestMapping(value = "/good/list/{name}", method = RequestMethod.GET)
     public BaseResult GetGoodList(@PathVariable String name) {
         logger.info("GetGoodList:" + name);
-        return ListResult.newSuccessResult(goodService.listGood(name))  ;
+        return ListResult.newSuccessResult(goodService.listGood(name));
     }
 
     @RequestMapping(value = "/good/list/redis/{name}", method = RequestMethod.GET)
     public BaseResult GetGoodListWithRedis(@PathVariable String name) {
-        return ListResult.newSuccessResult(goodService.listGoodWithRedis(name)) ;
+        return ListResult.newSuccessResult(goodService.listGoodWithRedis(name));
     }
 
     @RequestMapping(value = "/good/list/mq/{name}", method = RequestMethod.GET)
     public BaseResult GetGoodListWithMq(@PathVariable String name) {
-        return  ListResult.newSuccessResult(goodService.listGoodWithMq(name));
+        return ListResult.newSuccessResult(goodService.listGoodWithMq(name));
     }
 
     @RequestMapping(value = "/good/list/dubbo/{name}", method = RequestMethod.GET)
     public BaseResult GetGoodListWithDubbo(@PathVariable String name) {
-        return  ListResult.newSuccessResult(goodService.listGoodWithDubbo(name));
+        return ListResult.newSuccessResult(goodService.listGoodWithDubbo(name));
     }
 
     @RequestMapping(value = "/good/list/ex/{name}", method = RequestMethod.GET)

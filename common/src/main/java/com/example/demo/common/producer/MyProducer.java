@@ -21,6 +21,4 @@ public class MyProducer {
     public void  sendMessage(Object message){
         rocketMQTemplate.convertAndSend(topic, message);
     }
-
-
 }
