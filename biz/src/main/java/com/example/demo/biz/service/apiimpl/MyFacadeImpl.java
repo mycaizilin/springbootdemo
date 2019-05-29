@@ -2,7 +2,6 @@ package com.example.demo.biz.service.apiimpl;
 
 import com.example.demo.api.api.MyFacade;
 import com.example.demo.api.domain.GoodVO;
-import org.apache.dubbo.config.annotation.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ import java.util.List;
  * @Author: CaiZiLin
  * @Date: 2019/4/26 15:32
  */
-@Service
+//@Service
 public class MyFacadeImpl implements MyFacade {
 
     @Override

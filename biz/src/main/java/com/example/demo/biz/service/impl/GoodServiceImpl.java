@@ -33,7 +33,7 @@ public class GoodServiceImpl implements GoodService {
     @Autowired
     private MyProducer myProducer;
 
-    @Reference(check = false)
+    //@Reference(check = false)
     MyFacade myFacade;
 
     @Autowired

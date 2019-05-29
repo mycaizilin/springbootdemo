@@ -38,7 +38,17 @@
             <charset>UTF-8</charset>
         </encoder>
     </appender>
-
+    <appender name="sql-appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.home}/sql.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.home}/sql.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
     <!-- default -->
     <root level="${log.level:-INFO}">
         <appender-ref ref="ROOT"/>
@@ -47,5 +57,9 @@
 
     <logger name="com.example.demo.biz" level="${log.level:-INFO}" additivity="false">
         <appender-ref ref="biz-appender"/>
+    </logger>
+    <logger name="com.example.demo.repository.dao" level="DEBUG" additivity="false">
+        <appender-ref ref="sql-appender"/>
+        <appender-ref ref="STDOUT"/>
     </logger>
 </configuration>
