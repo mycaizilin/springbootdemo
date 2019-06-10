@@ -6,14 +6,16 @@ import com.example.demo.biz.service.GoodService;
 import com.example.demo.common.producer.MyProducer;
 import com.example.demo.repository.dao.GoodDAO;
 import com.example.demo.repository.entity.GoodDO;
-import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.rpc.RpcContext;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +25,7 @@ import java.util.List;
  * @Date: 2019/4/19 15:48
  */
 @Service
-public class GoodServiceImpl implements GoodService {
+public class GoodServiceImpl implements GoodService,InitializingBean {
 
     private final static org.slf4j.Logger logger = LoggerFactory.getLogger(GoodServiceImpl.class);
 
@@ -90,5 +92,15 @@ public class GoodServiceImpl implements GoodService {
             });
         }
         return goodVOList;
+    }
+     @PostConstruct
+    public void init() {
+        System.out.println("init");
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("afterPropertiesSet");
+
     }
 }
