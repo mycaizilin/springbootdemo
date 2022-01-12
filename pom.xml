@@ -29,7 +29,7 @@
         <com.example.demo.common.version>0.0.1-SNAPSHOT</com.example.demo.common.version>
         <rocketmq-spring-boot-starter.version>2.0.1</rocketmq-spring-boot-starter.version>
         <dubbo-spring-boot-starter.version>2.7.1</dubbo-spring-boot-starter.version>
-        <dubbo.version>2.7.1</dubbo.version>
+        <dubbo.version>2.7.15</dubbo.version>
         <dubbo-dependencies-zookeeper.version>2.7.1</dubbo-dependencies-zookeeper.version>
         <spring-boot-starter-aop.version>2.1.4.RELEASE</spring-boot-starter-aop.version>
         <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
